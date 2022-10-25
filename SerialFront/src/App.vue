@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Image from './components/Image.vue';
 import Form from './components/Form.vue';
+import Tabla from './components/Tabla.vue';
 </script>
 
 <template>
@@ -12,6 +13,9 @@ import Form from './components/Form.vue';
 			<Form />
 		</div>
 	</main>
+	<section class="centrar">
+		<Tabla />
+	</section>
 </template>
 
 <style scoped>
@@ -20,11 +24,11 @@ main {
 	justify-content: space-around;
 	flex-direction: row;
 	width: 100vh;
-	height: 100vh;
+	height: 50vh;
 }
 div {
 	width: 700px;
-	height: 50%;
+	height: 100%;
 }
 .centrar {
 	display: flex;
