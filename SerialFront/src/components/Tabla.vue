@@ -10,31 +10,29 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="registro in registros" :key="registro.idRegistro">
-				<td>{{ registro.idRegistro }}</td>
-				<td>{{ registro.fecha }}</td>
-				<td>{{ registro.hora }}</td>
-				<td>{{ registro.matricula }}</td>
+			<tr v-for="r in registro" :key="r.id">
+				<td>{{ r.id }}</td>
+				<td>{{ r.Fecha }}</td>
+				<td>{{ r.Hora }}</td>
+				<td>{{ r.Matricula }}</td>
 			</tr>
 		</tbody>
 	</table>
 </template>
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia';
+import { useRegistroStore } from '../store/useRegistroStore';
 import { ref } from 'vue';
+// llenar la tabla con los datos del store de pinia
 
-const registros = ref([
-	{
-		idRegistro: 0,
-		fecha: new Date().toLocaleDateString(),
-		hora: new Date().toLocaleTimeString(),
-		matricula: ''
-	}
-]);
+const registroStore = useRegistroStore();
+const { registro } = storeToRefs(registroStore);
 </script>
 
 <style scoped>
 table {
 	border-collapse: collapse;
-	width: 600px;
+	width: 100%;
+	align-self: center;
 }
 </style>

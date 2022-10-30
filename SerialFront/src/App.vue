@@ -2,6 +2,22 @@
 import Image from './components/Image.vue';
 import Form from './components/Form.vue';
 import Tabla from './components/Tabla.vue';
+import { useRegistroStore } from './store/useRegistroStore';
+import { ref, watch } from 'vue';
+
+const { addMatricula } = useRegistroStore();
+
+const matricula = ref('');
+
+watch(matricula, async newMatricula => {
+	if (newMatricula.length !== 8) {
+		return;
+	}
+	addMatricula(newMatricula);
+	matricula.value = '';
+});
+
+//obtener la matricula del store de pinia
 </script>
 
 <template>
@@ -13,7 +29,16 @@ import Tabla from './components/Tabla.vue';
 			<Form />
 		</div>
 	</main>
-	<section class="centrar">
+	<section>
+		<label for="matricula">Matricula</label>
+		<input
+			type="text"
+			id="matricula"
+			placeholder="Ingresar matricula"
+			v-model="matricula"
+		/>
+	</section>
+	<section>
 		<Tabla />
 	</section>
 </template>
@@ -24,7 +49,7 @@ main {
 	justify-content: space-around;
 	flex-direction: row;
 	width: 100vh;
-	height: 50vh;
+	height: 55vh;
 }
 div {
 	width: 700px;
@@ -34,5 +59,21 @@ div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 20px !important;
+}
+
+label {
+	display: block;
+	width: 100px;
+}
+
+table {
+	width: 100%;
 }
 </style>
